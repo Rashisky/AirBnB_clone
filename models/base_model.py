@@ -31,7 +31,6 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            # models.engine.file_storage.FileStorage.new(self.__dict__)
 
     def __str__(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
@@ -41,6 +40,7 @@ class BaseModel:
     def save(self):
         """updates the public instance attribute and save"""
         self.updated_at = datetime.datetime.now()
+        models.engine.file_storage.FileStorage.new(self, self.__dict__)
         models.storage.save()
         
 
