@@ -19,9 +19,11 @@ class BaseModel:
             self.id = kwargs['id']
             for keys, values in kwargs.items():
                 if keys == 'created_at':
-                    self.created_at = datetime.datetime.strptime(kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
+                    self.created_at = datetime.datetime.strptime(
+                        kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
                 elif keys == 'updated_at':
-                    self.updated_at = datetime.datetime.strptime(kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
+                    self.updated_at = datetime.datetime.strptime(
+                        kwargs['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
                 elif keys == 'name':
                     self.name = kwargs["name"]
                 elif keys == 'my_number':
@@ -42,7 +44,6 @@ class BaseModel:
         self.updated_at = datetime.datetime.now()
         models.engine.file_storage.FileStorage.new(self, self.__dict__)
         models.storage.save()
-        
 
     def to_dict(self):
         """returns a dictionary containing all keys/value of __dict__
